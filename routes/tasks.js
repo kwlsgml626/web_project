@@ -26,7 +26,7 @@ router.post('/', needAuth, function(req, res, next) {
   }
   var task = new Task({
     content: req.body.content,
-    category: req.body.category || "N/A",
+   // category: req.body.category || "N/A",
     priority: req.body.priority || 3,
     deadline: req.body.deadline,
     user: req.user.id
@@ -50,9 +50,9 @@ router.put('/:id', needAuth, function(req, res, next) {
     if (req.body.content) {
       task.content = req.body.content;
     }
-    if (req.body.category) {
-      task.category = req.body.category;
-    }
+    //if (req.body.category) {
+    //  task.category = req.body.category;
+    //}
     if (req.body.priority) {
       task.priority = req.body.priority;
     }
