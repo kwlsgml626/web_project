@@ -13,9 +13,9 @@ var configAuth = require('./config/auth');
 
 var routes = require('./routes/index'),
     users = require('./routes/users'),
-    todos = require('./routes/todos'),
-    tasks = require('./routes/tasks');
-    posts = require('./routes/posts');
+    rooms = require('./routes/rooms');
+    // tasks = require('./routes/tasks');
+    // posts = require('./routes/posts');
 var routeAuth = require('./routes/auth');
 
 var app = express();
@@ -29,7 +29,7 @@ if (app.get('env') === 'development') {
 app.locals.moment = require('moment');
 
 // mongodb connect
-mongoose.connect('mongodb://user:asdasd@ds041394.mongolab.com:41394/nodewp');
+mongoose.connect('mongodb://dbuser1:mju60152174@ds043477.mlab.com:43477/testtttt');
 mongoose.connection.on('error', console.log);
 
 // uncomment after placing your favicon in /public
@@ -63,9 +63,9 @@ configAuth(passport);
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/todos', todos);
-app.use('/tasks', tasks);
-app.use('/posts', posts);
+app.use('/rooms', rooms);
+// app.use('/tasks', tasks);
+// app.use('/posts', posts);
 routeAuth(app, passport);
 
 // catch 404 and forward to error handler

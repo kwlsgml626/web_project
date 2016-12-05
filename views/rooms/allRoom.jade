@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  .container
+    h1.page-header Hosting List
+    
+    //- | total #{pagination.numPosts} posts
+    table.table.table-bordered
+      thead
+        tr
+          th 도시
+          th 제목
+          th 주소
+          th 편의시설
+          th
+      tbody
+        each room in rooms
+          tr
+            td= room.city
+            td
+              a(href='/rooms/#{rooms.id}')= room.title
+            //- td= moment(post.createdAt).format('YYYY-MM-DD HH:mm:ss')
+            td= post.price
+            td 편의시설
+            //-   a.btn.btn-xs.btn-default(href='/posts/#{post.id}/edit') 수정
+            //-   | 
+            //-   a.btn.btn-xs.btn-default(data-id=post.id, class='delete') 삭제
+
+        

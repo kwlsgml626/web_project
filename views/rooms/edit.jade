@@ -1,0 +1,52 @@
+extends ../layout
+
+block content
+  .container
+    if room.id
+      h1.page-header Hosting Editor
+    else
+      h1.page-header Hosting
+
+    form(action = (room.id) ? "/rooms/#{room.id}?_method=PUT" : "/rooms", method='POST')
+        | #{currentUser._id}
+        .form-group
+            label(for='title') Title
+            input.form-control(type='text', id='title', name='title', placeholder='title', value=room.title)
+        .form-group
+            label(for='city') City
+            input.form-control(type='text', id='city', name='city', placeholder='city', value=room.city)
+        .form-group
+            label(for='address') Address
+            input.form-control(type='text', id='address', name='address', placeholder='address', value=room.address)
+        .form-group
+            label(for='price') Price
+            input.form-control(type='number', id='price', name='price', placeholder='price', value=room.price)
+        .form-group
+            label(for='facility') Facility
+            input.form-control(type='text', id='facility', name='facility', placeholder='facility', value=room.facility)
+        .form-group
+            label(for='content') Content
+            textarea.form-control(id='content', rows='10', name='content', placeholder='content here')= room.content
+
+        div.form-actions
+            a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
+            | 
+            button.btn.btn-primary(type='submit') 완료
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    //-   .form-group
+    //-     label(for='title') 제목
+    //-     input.form-control(type='email', id='email', name='email', placeholder='Email', value=post.email)
+    //-     label(for='password') Password
+    //-     input.form-control(type='password', id='password', name='password', placeholder='Password')
