@@ -9,6 +9,7 @@ var schema = new Schema({
   address: {type: String, require: true},
   price: {type: Number, require: true},
   facility: {type: String, require: true},
+  rule: {type: String, require: true},
   content: {type: String, require: true}
 }, {
   toJSON: { virtuals: true},

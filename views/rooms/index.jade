@@ -11,8 +11,8 @@ block content
           th 도시
           th 제목
           th 주소
+          th 가격
           th 편의시설
-          th
       tbody
         each room in rooms
           tr
@@ -20,8 +20,9 @@ block content
             td
               a(href='/rooms/#{rooms.id}')= room.title
             //- td= moment(post.createdAt).format('YYYY-MM-DD HH:mm:ss')
-            td= post.price
-            td 편의시설
+            td= room.address
+            td= room.price
+            td= room.facility
             //-   a.btn.btn-xs.btn-default(href='/posts/#{post.id}/edit') 수정
             //-   | 
             //-   a.btn.btn-xs.btn-default(data-id=post.id, class='delete') 삭제

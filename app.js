@@ -13,9 +13,9 @@ var configAuth = require('./config/auth');
 
 var routes = require('./routes/index'),
     users = require('./routes/users'),
-    rooms = require('./routes/rooms');
-    // tasks = require('./routes/tasks');
-    // posts = require('./routes/posts');
+    rooms = require('./routes/rooms'),
+    myRooms = require('./routes/myRooms'),
+    allRooms = require('./routes/allRooms');
 var routeAuth = require('./routes/auth');
 
 var app = express();
@@ -64,8 +64,8 @@ configAuth(passport);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/rooms', rooms);
-// app.use('/tasks', tasks);
-// app.use('/posts', posts);
+app.use('/myRooms', myRooms);
+app.use('/allRooms', allRooms);
 routeAuth(app, passport);
 
 // catch 404 and forward to error handler

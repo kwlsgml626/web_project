@@ -16,4 +16,5 @@ block content
     p.well(style='white-space:pre;')= room.content
     
     a.btn.btn-default(href='/rooms') 목록
-    a.btn.btn-default(href='/reserves') 예약
+    a.btn.btn-default(href='/reserves') 수락
+    a.btn.btn-default(data-id=room.id, class='delete') 거절

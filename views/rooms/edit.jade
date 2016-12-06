@@ -25,6 +25,9 @@ block content
             label(for='facility') Facility
             input.form-control(type='text', id='facility', name='facility', placeholder='facility', value=room.facility)
         .form-group
+            label(for='rule') Rule
+            input.form-control(type='text', id='rule', name='rule', placeholder='rule', value=room.rule)
+        .form-group
             label(for='content') Content
             textarea.form-control(id='content', rows='10', name='content', placeholder='content here')= room.content
 

@@ -22,6 +22,7 @@ router.post('/', function(req, res, next) {
   newRoom.address = req.body.address;
   newRoom.price = req.body.price;
   newRoom.facility = req.body.facility;
+  newRoom.rule = req.body.rule;
   newRoom.content = req.body.content;
   newRoom.save(function(err, room){
       if(err){
@@ -38,17 +39,65 @@ router.get('/new', function(req, res, next) {
 });
 
 
-// myRoom카테고리 클릭
-router.get('/myRooms', function(req, res, next) {
-  res.render('rooms/myRoom');
+/*
+router.get('/:id', function(req, res, next) {
+  Room.findById({_id: req.params.id}, function(err, rooms){
+    if(err){
+      return next(err);
+    }
+    rooms.save(function(err) {
+      if(err) {
+        return next(err);
+      }
+      res.render('rooms/show', {room : rooms}); 
+    });
+  });
 });
 
 
 
-// allRooms카테고리 클릭
-router.get('/allRooms', function(req, res, next) {
-  res.render('rooms/allRoom');
+router.get('/:id/edit', function(req, res, next) {
+  Room.findById(req.params.id, function(err, rooms){
+    if(err){
+      return next(err);
+    }
+    res.render('posts/edit',{room : rooms});
+  });
 });
 
+
+router.put('/:id', function(req, res, next) {
+  Room.findById(req.params.id, function(err, rooms){
+    if(err) {
+      return next(err);
+    }
+   // newRoom.user = req.body.user;
+   // newRoom.title = req.body.title;
+    newRoom.city = req.body.city;
+    newRoom.address = req.body.address;
+    newRoom.price = req.body.price;
+    newRoom.facility = req.body.facility;
+    newRoom.rule = req.body.rule;
+    newRoom.content = req.body.content;
+    newRoom.save(function(err, room){
+      if(err) {
+        return next(err);
+      }
+      res.render('posts/show', {room : rooms});
+    });
+  });
+});
+
+
+router.delete('/:id', function(req, res, next) {
+  Room.findOneAndRemove({_id: req.params.id}, function(err){
+    if(err) {
+      return next(err);
+    }
+    res.redirect('/rooms');
+  });
+});
+
+*/
 
 module.exports = router;
