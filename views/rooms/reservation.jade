@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  .container
+    if room.id
+      h1.page-header Reservation Editor
+    else
+      h1.page-header Reservation
+
+    form(action = (room.id) ? "/rooms/reservations/#{room.id}?_method=PUT" : "/rooms/reservations", method='POST')
+        
+        .form-group
+            label(for='checkin') Checkin
+            input.form-control(type='text', id='checkin', name='checkin', placeholder='checkin')
+        .form-group
+            label(for='checkout') Checkout
+            input.form-control(type='text', id='checkout', name='checkout', placeholder='checkout')
+        .form-group
+            label(for='num') Number
+            input.form-control(type='text', id='num', name='num', placeholder='num')
+
+        div.form-actions
+            a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
+            | 
+            button.btn.btn-primary(type='submit') 완료

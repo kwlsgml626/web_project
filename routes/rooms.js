@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 // 로그인 후 hosting 게시판
 router.post('/', function(req, res, next) {
   var newRoom = new Room();
-  newRoom.user = req.body.user;
+  newRoom.user = req.user.id;
   newRoom.title = req.body.title;
   newRoom.city = req.body.city;
   newRoom.address = req.body.address;
@@ -39,21 +39,24 @@ router.get('/new', function(req, res, next) {
 });
 
 
-/*
+
 router.get('/:id', function(req, res, next) {
-  Room.findById({_id: req.params.id}, function(err, rooms){
+  Room.findById(req.params.id, function(err, room){
     if(err){
       return next(err);
     }
-    rooms.save(function(err) {
-      if(err) {
-        return next(err);
-      }
-      res.render('rooms/show', {room : rooms}); 
-    });
+    
+    res.render('rooms/show', {room : room}); 
   });
 });
 
+//예약
+router.get('/reserves/:id', function(req, res, next){
+  Room.findById(req.params.id, function(err, room){
+    res.render('rooms/reservation', {room: room});
+  });
+  
+});
 
 
 router.get('/:id/edit', function(req, res, next) {
@@ -90,7 +93,7 @@ router.put('/:id', function(req, res, next) {
 
 
 router.delete('/:id', function(req, res, next) {
-  Room.findOneAndRemove({_id: req.params.id}, function(err){
+  Room.findOneAndRemove(req.params.id, function(err){
     if(err) {
       return next(err);
     }
@@ -98,6 +101,6 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
-*/
+
 
 module.exports = router;
