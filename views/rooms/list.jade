@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  .container
+    h1.page-header Reserved List
+    
+    //- | total #{pagination.numPosts} posts
+    table.table.table-bordered
+      thead
+        tr
+          th checkin
+          th checkout
+          th number
+      tbody
+        each reservation in reservations
+          tr
+            td= reservation.checkIn
+            td= reservation.checkOut
+            td= reservation.num

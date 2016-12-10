@@ -2,6 +2,7 @@ extends ../layout
 
 block content
   .container
+    
     h1.page-header= room.title
     p
       b by #{room.city}
@@ -15,6 +16,48 @@ block content
       b by #{room.rule}
     p.well(style='white-space:pre;')= room.content
     
-    a.btn.btn-default(href='/rooms') 목록
-    a.btn.btn-default(href='/reserves') 수락
-    a.btn.btn-default(data-id=room.id, class='delete') 거절
+    a.btn.btn-default(href='/myRooms') 목록
+    
+    table.table.table-bordered
+      thead
+        tr
+          th checkIn
+          th checkOut
+          th num
+      tbody
+        each reservation in reservations
+          tr
+            td= reservation.checkIn
+            td= reservation.checkOut
+            td= reservation.num
+            td
+              a.btn.btn-xs.btn-default(data-id=reservation.id, class='ok') 수락
+              | 
+              a.btn.btn-xs.btn-default(data-id=reservation.id, class='delete') 거절
+        
+    form#deleteForm(style='display:none', method="POST")
+    form#ok(style='display:none', method="POST")
+          
+    script(type='text/javascript').
+      $(".delete").click(function(e) {
+        var id = $(e.currentTarget).data('id');
+        if (confirm('정말 거절하시겠습니까?')) {
+          console.log("click");
+          $("#deleteForm").attr('action', "/myRooms/admit/" + id + "?_method=DELETE").submit();          
+        }
+        return false;
+      });
+      
+      $(".ok").click(function(e) {
+        var id = $(e.currentTarget).data('id');
+        if (confirm('정말 예약하시겠습니까?')) {
+          console.log("click");
+          $("#ok").attr('action', "/myRooms/admit/" + id + "?_method=POST").submit();          
+        }
+        return false;
+      });
+      
+  
+      
+  
+            

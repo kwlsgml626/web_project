@@ -41,7 +41,7 @@ function validateForm(form, options) {
 }
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', needAuth, function(req, res, next) {
     Room.find({}, function(err, rooms){
         if(err){
             return next(err);
@@ -50,6 +50,7 @@ router.get('/', function(req, res, next) {
     });
     
 });
+
 
 
 

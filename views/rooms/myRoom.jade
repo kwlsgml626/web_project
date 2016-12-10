@@ -18,7 +18,7 @@ block content
           tr
             td= room.city
             td
-              a(href='/rooms/#{room.id}')= room.title
+              a(href='/myRooms/#{room.id}')= room.title
             //- td= moment(post.createdAt).format('YYYY-MM-DD HH:mm:ss')
             td= room.address
             td= room.price
@@ -32,3 +32,15 @@ block content
             //-   a.btn.btn-xs.btn-default(href='/posts/#{post.id}/edit') 수락
             //-   | 
             //-   a.btn.btn-xs.btn-default(data-id=post.id, class='delete') 거절
+
+    form#deleteForm(style='display:none', method="POST")
+
+    script(type='text/javascript').
+      $(".delete").click(function(e) {
+        var id = $(e.currentTarget).data('id');
+        if (confirm('정말 삭제하시겠습니까?')) {
+          console.log("click");
+          $("#deleteForm").attr('action', "/rooms/" + id + "?_method=DELETE").submit();          
+        }
+        return false;
+      });

@@ -39,13 +39,14 @@ module.exports = function(passport) {
 
   passport.use(new FacebookStrategy({
     // 이 부분을 여러분 Facebook App의 정보로 수정해야 합니다.
-    clientID : '489156791255677',
-    clientSecret : '29f420f7bc10b5be37a9394a689b02c2',
+    clientID : '1222879737806784',
+    clientSecret : '3500e32a1200484080d7f0bbfb72ab4a',
     callbackURL : 'http://localhost:3000/auth/facebook/callback',
     profileFields : ["emails", "displayName", "name", "photos"]
   }, function(token, refreshToken, profile, done) {
     console.log(profile);
-    var email = profile.emails[0].value;
+    // var email = profile.emails[0].value;
+    var email = "kwlsgml626@naver.com";
     process.nextTick(function () {
       User.findOne({'facebook.id': profile.id}, function(err, user) {
         if (err) {
@@ -61,7 +62,8 @@ module.exports = function(passport) {
             if (!user) {
               user = new User({
                 name: profile.displayName,
-                email: profile.emails[0].value
+                // email: profile.emails[0].value
+                email: email
               });
             }
             user.facebook.id = profile.id;
