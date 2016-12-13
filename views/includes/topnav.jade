@@ -12,8 +12,9 @@
       ul.nav.navbar-nav
         li
           a(href='/myRooms') MyRoom
-        li
-          a(href='/users') Users
+        if (admin)
+          li
+            a(href='/users') Users
         li
           a(href='/rooms') AllRoom
         li

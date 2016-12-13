@@ -5,6 +5,16 @@ block content
     h1.page-header Hosting List
     
     //- | total #{pagination.numPosts} posts
+  
+    form(action = "/rooms/search", method='POST')
+      row
+        .col-md-10
+          .form-group
+              input.form-control(type='text', id='city', name='city', placeholder='검색할 도시명을 입력하세요.')
+        .col-md-2
+          button.btn.btn-primary(type='submit', style='width:100%') 검색
+        
+    br
     table.table.table-bordered
       thead
         tr

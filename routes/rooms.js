@@ -14,6 +14,16 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.post('/search', function(req, res, next) {
+    Room.find({city : req.body.city}, function(err, rooms){
+        if(err){
+            return next(err);
+        }
+        res.render('rooms/index', {rooms: rooms});
+    });
+
+});
+
 // 로그인 후 hosting 게시판
 router.post('/', function(req, res, next) {
   var newRoom = new Room();

@@ -56,6 +56,14 @@ app.use(passport.session());
 
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
+  if(req.user !== undefined){
+    if(res.locals.currentUser.email === 'admin@gmail.com'){
+      res.locals.admin = res.locals.currentUser;
+    }
+    else {
+      res.locals.admin = null;
+    }
+  }
   res.locals.flashMessages = req.flash();
   next();
 });
